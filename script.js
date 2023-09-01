@@ -3,10 +3,11 @@ const popup = document.getElementById("popup-container");
 const message_el = document.getElementById("success-message");
 const wrongLetters_el = document.getElementById("wrong-letters");
 const items = document.querySelectorAll(".item");
+const playAgainBtn = document.getElementById('play-again');
 
 const correctLetters = [];
 const wrongLetters = [];
-const selectedWord = getRandomWord();
+let selectedWord = getRandomWord();
 
 
 function getRandomWord() {
@@ -63,6 +64,17 @@ function updateWrongLetters() {
 
 
     });
+}
+
+playAgainBtn.addEventListener('click', resetGame);
+
+function resetGame() {
+    correctLetters.length = 0;
+    wrongLetters.length = 0;
+    selectedWord = getRandomWord();
+    displayWord();
+    updateWrongLetters();
+    popup.style.display = "none";
 }
 
 window.addEventListener('keydown', function (e) {
